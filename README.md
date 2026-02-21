@@ -11,7 +11,7 @@ We solved this with hooks. Here's how.
 1. Copy `worktree-create.sh` and `worktree-remove.sh` into your repo's `scripts/` directory
 2. Make them executable: `chmod +x scripts/worktree-create.sh scripts/worktree-remove.sh`
 3. Customize the env files, directories, and dependency install commands in `worktree-create.sh`
-4. Merge [settings.json](./settings.json) into your `.claude/settings.json`
+4. Merge [`.claude/settings.json`](./.claude/settings.json) into your `.claude/settings.json`
 5. Add `**/.claude/worktrees/` to your `.gitignore`
 6. Run `claude --worktree my-feature` and watch the setup happen automatically
 
@@ -45,7 +45,7 @@ The docs frame this as a way to support non-git VCS (SVN, Perforce, Mercurial), 
 
 ### Step 1: The create script
 
-Create `scripts/worktree-create.sh` in your repo (or grab the [template](./worktree-create.sh)):
+Create `scripts/worktree-create.sh` in your repo (or grab the [template](./scripts/worktree-create.sh)):
 
 ```bash
 #!/usr/bin/env bash
@@ -224,8 +224,8 @@ When you're done:
 
 ## Files
 
-- [`worktree-create.sh`](./worktree-create.sh) — Creates worktree + runs setup, with env copying, deterministic ports, and dependency installation
-- [`worktree-remove.sh`](./worktree-remove.sh) — Cleanup script for WorktreeRemove hook
-- [`settings.json`](./settings.json) — Hook configuration to add to your `.claude/settings.json`
+- [`scripts/worktree-create.sh`](./scripts/worktree-create.sh) — Creates worktree + runs setup, with env copying, deterministic ports, and dependency installation
+- [`scripts/worktree-remove.sh`](./scripts/worktree-remove.sh) — Cleanup script for WorktreeRemove hook
+- [`.claude/settings.json`](./.claude/settings.json) — Hook configuration to add to your `.claude/settings.json`
 
 Customize the dependency installation section for your stack (npm, pip, cargo, etc.) and the list of env files to copy.
