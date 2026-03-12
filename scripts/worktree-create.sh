@@ -36,6 +36,10 @@ log "Creating worktree (branch: $BRANCH, port: $DEV_PORT)..."
 # --- Create the git worktree ---
 # IMPORTANT: redirect git output away from stdout — Claude parses stdout for the path
 mkdir -p "${REPO_PATH}/.claude/worktrees"
+if [ -d "$WORKTREE_PATH" ]; then
+  echo "Error: worktree already exists at ${WORKTREE_PATH}" >&2
+  exit 1
+fi
 if git rev-parse --verify "$BRANCH" >/dev/null 2>&1; then
   git worktree add "$WORKTREE_PATH" "$BRANCH" >/dev/null 2>&1
 else
