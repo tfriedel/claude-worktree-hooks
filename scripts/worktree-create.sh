@@ -52,12 +52,14 @@ done
 # --- Copy directories ---
 # Useful for data dirs, fixtures, or other non-gittracked content.
 COPY_DIRS=()  # e.g., ("data" "fixtures" "secrets")
-for d in "${COPY_DIRS[@]}"; do
-  if [ -d "${REPO_PATH}/$d" ]; then
-    mkdir -p "${WORKTREE_PATH}/$d"
-    cp -rT "${REPO_PATH}/$d" "${WORKTREE_PATH}/$d"
-  fi
-done
+if [[ ${#COPY_DIRS[@]} -gt 0 ]]; then
+  for d in "${COPY_DIRS[@]}"; do
+    if [ -d "${REPO_PATH}/$d" ]; then
+      mkdir -p "${WORKTREE_PATH}/$d"
+      cp -rT "${REPO_PATH}/$d" "${WORKTREE_PATH}/$d"
+    fi
+  done
+fi
 
 # --- Generate .env.local with a deterministic port ---
 cat > "${WORKTREE_PATH}/.env.local" << EOF
