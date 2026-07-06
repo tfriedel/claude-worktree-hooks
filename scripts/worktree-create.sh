@@ -22,7 +22,7 @@ BRANCH="worktree-${NAME}"
 
 # Progress goes to /dev/tty — stdout is reserved for Claude
 TTY=/dev/tty
-log() { echo "$*" > "$TTY" 2>/dev/null || true; }
+log() { { echo "$*" > "$TTY"; } 2>/dev/null || true; }
 
 hash_port() {
   local hash
