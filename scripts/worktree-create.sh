@@ -27,7 +27,7 @@ log() { echo "$*" > "$TTY" 2>/dev/null || true; }
 hash_port() {
   local hash
   hash=$(echo -n "$1" | md5sum | tr -d -c '0-9' | head -c 5)
-  echo $(( (hash % 6900) + 3100 ))
+  echo $(( (10#$hash % 6900) + 3100 ))
 }
 DEV_PORT=$(hash_port "$BRANCH")
 
